@@ -7,7 +7,7 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     RandomForestClassifier,
 )
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score,accuracy_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
@@ -103,7 +103,7 @@ class ModelTrainer:
 
             predicted = best_model.predict(x_test)
 
-            r2_square = r2_score(y_test, predicted)
+            accuracy_score = accuracy_score(y_test, predicted)
 
             upload_file(
                 from_filename=self.model_trainer_config.trained_model_file_path,
@@ -111,7 +111,7 @@ class ModelTrainer:
                 bucket_name=AWS_S3_BUCKET_NAME,
             )
 
-            return r2_square
+            return accuracy_score
 
         except Exception as e:
             raise CustomException(e, sys)
