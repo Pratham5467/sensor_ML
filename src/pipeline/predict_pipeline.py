@@ -93,6 +93,7 @@ class PredictionPipeline:
         """
    
         try:
+                # reading the file
 
             prediction_column_name : str = TARGET_COLUMN
             input_dataframe: pd.DataFrame = pd.read_csv(input_dataframe_path)
